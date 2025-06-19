@@ -1,6 +1,6 @@
 Django_Forms
 
-Select a project (one of the team members) from the previous sprint and copy the project.
+- [ ] Select a project (one of the team members) from the previous sprint and copy the project.
 
 Update POST/PUT methods and templates for adding/editing functionality using Django forms.
 

@@ -1,0 +1,6 @@
+<h1>Книги користувача #{{ user_id }}</h1>
+<ul>
+  {% for book in books %}
+    <li>{{ book.name }}</li>
+  {% endfor %}
+</ul>

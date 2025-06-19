@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <title>Головна</title>
+</head>
+<body>
+    <h1>Ласкаво просимо, {{ user.first_name|default:user.email }}!</h1>
+    <p>Ваша роль: {{ user.get_role_name }}</p>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'login' %}">Логін</a></li>
+            <li><a href="{% url 'all_books' %}">Книги</a></li>
+            <li><a href="{% url 'filter_books' %}">Фільтр Книг</a></li>
+            <li><a href="{% url 'book_create' %}">Створити Книгу</a></li>
+            <li><a href="{% url 'user_list' %}">Список користувачів</a></li>
+            <li><a href="{% url 'author_list' %}">Список авторів</a></li>
+            
+        </ul>
+    </nav>
+
+    <p><a href="{% url 'logout' %}">Вийти</a></p>
+</body>
+</html>

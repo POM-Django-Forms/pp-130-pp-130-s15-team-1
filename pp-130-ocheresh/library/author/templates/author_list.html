@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Authors</title></head>
+<body>
+<h1>All Authors</h1>
+<a href="{% url 'author_create' %}">Create new author</a>
+<ul>
+    {% for author in authors %}
+        <li>
+            {{ author.name }} {{ author.surname }} {{ author.patronymic }}
+            {% if not author.books.all %}
+                <form action="{% url 'author_delete' author.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            {% else %}
+                (Has books)
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No authors available</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

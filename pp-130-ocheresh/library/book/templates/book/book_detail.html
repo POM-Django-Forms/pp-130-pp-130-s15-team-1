@@ -1,0 +1,5 @@
+<h1>{{ book.name }}</h1>
+<p>{{ book.description }}</p>
+<p>Кількість: {{ book.count }}</p>
+<p>Автори: {% for author in book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+<a href="{% url 'all_books' %}">Назад</a>

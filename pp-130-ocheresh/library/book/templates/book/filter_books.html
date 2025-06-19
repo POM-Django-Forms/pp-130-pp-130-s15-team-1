@@ -1,0 +1,11 @@
+<form method="get">
+  Назва: <input type="text" name="title">
+  Автор: <input type="text" name="author">
+  <button type="submit">Фільтрувати</button>
+</form>
+
+<ul>
+  {% for book in books %}
+    <li><a href="{% url 'book_detail' book.id %}">{{ book.name }}</a></li>
+  {% endfor %}
+</ul>

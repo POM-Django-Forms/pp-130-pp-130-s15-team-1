@@ -20,7 +20,7 @@ def update_book_view(request, book_id):
             return redirect('book_detail', book_id=book.id) 
     else: 
         form = BookForm(instance=book) 
-    return render(request, 'book/book_update.html', 
+    return render(request, 'book/book_update.html', { 
         'form': form,
         'book': book, \
         'title': f'Редагування: {book.name}',

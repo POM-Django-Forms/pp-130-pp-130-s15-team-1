@@ -3,35 +3,27 @@ from django.contrib.auth import authenticate, login, logout
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserForm
+
 
 def register_view(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        middle_name = request.POST['middle_name']
-        role = int(request.POST['role'])  # 0 or 1
+        form = CustomUserForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
 
-        if CustomUser.get_by_email(email):
-            messages.error(request, "User with this email already exists.")
-        else:
-            user = CustomUser.create(
-                email=email,
-                password=password,
-                first_name=first_name,
-                middle_name=middle_name,
-                last_name=last_name
-            )
-            if user:
-                user.role = role
-                user.is_active = True
+            if CustomUser.get_by_email(email):
+                messages.error(request, "User with this email already exists.")
+            else:
+                user = form.save(commit=False)
                 user.set_password(password)
+                user.is_active = True
                 user.save()
                 return redirect('login')
-            else:
-                messages.error(request, "User creation failed. Check input lengths.")
-    return render(request, 'register.html')
+    else:
+        form = CustomUserForm()
+    return render(request, 'register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':

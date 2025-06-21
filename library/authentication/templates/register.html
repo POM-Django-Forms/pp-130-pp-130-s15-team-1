@@ -1,20 +1,7 @@
-<h2>Register</h2>
+<h2>{{ action }} User</h2>
 <form method="post">
-  {% csrf_token %}
-  <label>Email: <input type="email" name="email" required></label><br>
-  <label>Password: <input type="password" name="password" required></label><br>
-  <label>First name: <input type="text" name="first_name" required></label><br>
-  <label>Middle name: <input type="text" name="middle_name" required></label><br>
-  <label>Last name: <input type="text" name="last_name" required></label><br>
-  <label>Role:
-    <select name="role">
-      <option value="0">Visitor</option>
-      <option value="1">Librarian</option>
-    </select>
-  </label><br>
-  <button type="submit">Register</button>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{{ action }} Register</button>
 </form>
-<a href="">Already have an account?</a>
-{% for message in messages %}
-  <p style="color:red">{{ message }}</p>
-{% endfor %}
+<a href="{% url 'login' %}">Back</a>

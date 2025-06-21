@@ -2,4 +2,5 @@
 <p>{{ book.description }}</p>
 <p>Кількість: {{ book.count }}</p>
 <p>Автори: {% for author in book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+<a href="{% url 'book_update' book.id %}" class="btn btn-warning">Редагувати</a>
 <a href="{% url 'all_books' %}">Назад</a>

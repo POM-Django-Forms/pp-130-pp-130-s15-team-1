@@ -23,5 +23,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/authentication/login/', permanent=False)),
     path('book/', include('book.urls')),
     path('author/', include('author.urls')),
+    path('order/', include('order.urls')),
 ]
 

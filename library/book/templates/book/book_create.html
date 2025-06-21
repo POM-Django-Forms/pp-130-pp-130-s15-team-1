@@ -7,16 +7,9 @@
     <h1>Створення нової книги</h1>
     <form method="post">
         {% csrf_token %}
-        <label for="name">Назва книги:</label><br>
-        <input type="text" id="name" name="name" maxlength="128" required><br><br>
-
-        <label for="description">Опис книги:</label><br>
-        <textarea id="description" name="description" maxlength="256"></textarea><br><br>
-
-        <label for="count">Кількість:</label><br>
-        <input type="number" id="count" name="count" value="10" min="0"><br><br>
-
+        {{ form.as_p }}
         <button type="submit">Створити книгу</button>
     </form>
+    <a href="{% url 'all_books' %}">Назад</a>
 </body>
 </html>

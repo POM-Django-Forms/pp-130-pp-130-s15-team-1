@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 from .forms import CustomUserForm
 
 
@@ -24,6 +25,25 @@ def register_view(request):
     else:
         form = CustomUserForm()
     return render(request, 'register.html', {'form': form})
+
+@login_required
+def edit_user_view(request, user_id):
+    user = get_object_or_404(CustomUser, pk=user_id)
+
+    if request.method in ['POST', 'PUT']:
+        form = CustomUserForm(request.POST, instance=user)
+        if form.is_valid():
+            password = form.cleaned_data.get('password')
+            user = form.save(commit=False)
+            if password:
+                user.set_password(password)
+            user.save()
+            messages.success(request, "User updated successfully.")
+            return redirect('login')
+    else:
+        form = CustomUserForm(instance=user)
+
+    return render(request, 'register.html', {'form': form, 'action': 'Edit'})
 
 def login_view(request):
     if request.method == 'POST':

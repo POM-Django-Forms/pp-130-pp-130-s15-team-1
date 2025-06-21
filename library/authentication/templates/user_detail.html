@@ -15,5 +15,6 @@
     <p><strong>Updated:</strong> {{ user.updated_at }}</p>
 
     <a href="{% url 'user_list' %}">Back to users</a>
+    <a href="{% url 'edit_user' user.id %}">Змінити</a>
 </body>
 </html>

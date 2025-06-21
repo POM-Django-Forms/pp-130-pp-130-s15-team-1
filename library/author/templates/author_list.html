@@ -8,14 +8,14 @@
     {% for author in authors %}
         <li>
             {{ author.name }} {{ author.surname }} {{ author.patronymic }}
-            {% if not author.books.all %}
-                <form action="{% url 'author_delete' author.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">Delete</button>
-                </form>
-            {% else %}
-                (Has books)
-            {% endif %}
+            <form action="{% url 'author_edit' author.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Змінити</button>
+            </form>
+            <form action="{% url 'author_delete' author.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
         </li>
     {% empty %}
         <li>No authors available</li>

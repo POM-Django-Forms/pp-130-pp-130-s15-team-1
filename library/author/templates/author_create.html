@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head><title>Create Author</title></head>
-<body>
-<h1>Create Author</h1>
-<form method="post">
+
+<h2>{{ action }} Author</h2>
+<form method="post" action="{{ form_action }}">
     {% csrf_token %}
-    <label>Name: <input type="text" name="name" required></label><br>
-    <label>Surname: <input type="text" name="surname" required></label><br>
-    <label>Patronymic: <input type="text" name="patronymic" required></label><br>
-    <button type="submit">Create</button>
+    {{ form.as_p }}
+    <button type="submit">{{ action }}</button>
 </form>
-<a href="{% url 'author_list' %}">Back</a>
-</body>
-</html>
+<a href="{% url 'author_list' %}">Back to list</a>
+

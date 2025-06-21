@@ -11,18 +11,18 @@ def book_detail(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(request, 'book/book_detail.html', {'book': book})
 
-def update_book_view(request, book_id): #
-    book = get_object_or_404(Book, id=book_id) #
-    if request.method == 'POST': #
-        form = BookForm(request.POST, instance=book) #
-        if form.is_valid(): #
-            form.save() #
-            return redirect('book_detail', book_id=book.id) # Перенаправляємо на сторінку деталей книги
-    else: #
-        form = BookForm(instance=book) #
-    return render(request, 'book/book_update.html', { # Рендеримо book_update.html для форми
+def update_book_view(request, book_id): 
+    book = get_object_or_404(Book, id=book_id) 
+    if request.method == 'POST': 
+        form = BookForm(request.POST, instance=book) 
+        if form.is_valid(): 
+            form.save() 
+            return redirect('book_detail', book_id=book.id) 
+    else: 
+        form = BookForm(instance=book) 
+    return render(request, 'book/book_update.html', 
         'form': form,
-        'book': book, # Передаємо об'єкт книги також, якщо він потрібен в шаблоні
+        'book': book, \
         'title': f'Редагування: {book.name}',
         'back_url': 'book_detail',
         'book_id': book.id
